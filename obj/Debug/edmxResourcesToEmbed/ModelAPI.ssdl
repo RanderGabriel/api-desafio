@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="desafioapiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nascimento" Type="datetime" />
+    <Property Name="Celular" Type="varchar" MaxLength="50" />
+    <Property Name="Fixo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="os">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCliente" Type="int" />
+    <Property Name="DataContratacao" Type="datetime" />
+    <Property Name="DataExecucao" Type="datetime" />
+  </EntityType>
+  <EntityType Name="osxservico">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdOs" Type="int" />
+    <Property Name="IdServico" Type="int" />
+  </EntityType>
+  <EntityType Name="servicos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeServico" Type="varchar" MaxLength="50" />
+    <Property Name="ValorFinal" Type="float" />
+  </EntityType>
+  <Association Name="FK__os__IdCliente__3C69FB99">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+    <End Role="os" Type="Self.os" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__osxservic__IdSer__403A8C7D">
+    <End Role="servicos" Type="Self.servicos" Multiplicity="0..1" />
+    <End Role="osxservico" Type="Self.osxservico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="servicos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="osxservico">
+        <PropertyRef Name="IdServico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__osxservico__IdOs__3F466844">
+    <End Role="os" Type="Self.os" Multiplicity="0..1" />
+    <End Role="osxservico" Type="Self.osxservico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="osxservico">
+        <PropertyRef Name="IdOs" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="desafioapiModelStoreContainer">
+    <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os" EntityType="Self.os" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="osxservico" EntityType="Self.osxservico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="servicos" EntityType="Self.servicos" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__os__IdCliente__3C69FB99" Association="Self.FK__os__IdCliente__3C69FB99">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="os" EntitySet="os" />
+    </AssociationSet>
+    <AssociationSet Name="FK__osxservic__IdSer__403A8C7D" Association="Self.FK__osxservic__IdSer__403A8C7D">
+      <End Role="servicos" EntitySet="servicos" />
+      <End Role="osxservico" EntitySet="osxservico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__osxservico__IdOs__3F466844" Association="Self.FK__osxservico__IdOs__3F466844">
+      <End Role="os" EntitySet="os" />
+      <End Role="osxservico" EntitySet="osxservico" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

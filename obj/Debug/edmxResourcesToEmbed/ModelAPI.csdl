@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="desafioapiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nascimento" Type="DateTime" Precision="3" />
+    <Property Name="Celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fixo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os" Relationship="Self.FK__os__IdCliente__3C69FB99" FromRole="cliente" ToRole="os" />
+  </EntityType>
+  <EntityType Name="os">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCliente" Type="Int32" />
+    <Property Name="DataContratacao" Type="DateTime" Precision="3" />
+    <Property Name="DataExecucao" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="cliente" Relationship="Self.FK__os__IdCliente__3C69FB99" FromRole="os" ToRole="cliente" />
+    <NavigationProperty Name="osxservico" Relationship="Self.FK__osxservico__IdOs__3F466844" FromRole="os" ToRole="osxservico" />
+  </EntityType>
+  <EntityType Name="osxservico">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdOs" Type="Int32" />
+    <Property Name="IdServico" Type="Int32" />
+    <NavigationProperty Name="os" Relationship="Self.FK__osxservico__IdOs__3F466844" FromRole="osxservico" ToRole="os" />
+    <NavigationProperty Name="servicos" Relationship="Self.FK__osxservic__IdSer__403A8C7D" FromRole="osxservico" ToRole="servicos" />
+  </EntityType>
+  <EntityType Name="servicos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeServico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ValorFinal" Type="Double" />
+    <NavigationProperty Name="osxservico" Relationship="Self.FK__osxservic__IdSer__403A8C7D" FromRole="servicos" ToRole="osxservico" />
+  </EntityType>
+  <Association Name="FK__os__IdCliente__3C69FB99">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+    <End Role="os" Type="Self.os" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__osxservico__IdOs__3F466844">
+    <End Role="os" Type="Self.os" Multiplicity="0..1" />
+    <End Role="osxservico" Type="Self.osxservico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="osxservico">
+        <PropertyRef Name="IdOs" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__osxservic__IdSer__403A8C7D">
+    <End Role="servicos" Type="Self.servicos" Multiplicity="0..1" />
+    <End Role="osxservico" Type="Self.osxservico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="servicos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="osxservico">
+        <PropertyRef Name="IdServico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="desafioapiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cliente" EntityType="Self.cliente" />
+    <EntitySet Name="os" EntityType="Self.os" />
+    <EntitySet Name="osxservico" EntityType="Self.osxservico" />
+    <EntitySet Name="servicos" EntityType="Self.servicos" />
+    <AssociationSet Name="FK__os__IdCliente__3C69FB99" Association="Self.FK__os__IdCliente__3C69FB99">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="os" EntitySet="os" />
+    </AssociationSet>
+    <AssociationSet Name="FK__osxservico__IdOs__3F466844" Association="Self.FK__osxservico__IdOs__3F466844">
+      <End Role="os" EntitySet="os" />
+      <End Role="osxservico" EntitySet="osxservico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__osxservic__IdSer__403A8C7D" Association="Self.FK__osxservic__IdSer__403A8C7D">
+      <End Role="servicos" EntitySet="servicos" />
+      <End Role="osxservico" EntitySet="osxservico" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

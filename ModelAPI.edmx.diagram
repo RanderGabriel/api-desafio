@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="47cb97f458ac4552932ba0ba495f260c" Name="Diagram1">
+        <EntityTypeShape EntityType="desafioapiModel.cliente" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="desafioapiModel.os" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="desafioapiModel.osxservico" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="desafioapiModel.servicos" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="desafioapiModel.FK__os__IdCliente__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="desafioapiModel.FK__osxservico__IdOs__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="desafioapiModel.FK__osxservic__IdSer__403A8C7D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

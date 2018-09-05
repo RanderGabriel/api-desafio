@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="desafioapiModelStoreContainer" CdmEntityContainer="desafioapiEntities">
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="desafioapiModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nascimento" ColumnName="Nascimento" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Fixo" ColumnName="Fixo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os">
+      <EntityTypeMapping TypeName="desafioapiModel.os">
+        <MappingFragment StoreEntitySet="os">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="DataContratacao" ColumnName="DataContratacao" />
+          <ScalarProperty Name="DataExecucao" ColumnName="DataExecucao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="osxservico">
+      <EntityTypeMapping TypeName="desafioapiModel.osxservico">
+        <MappingFragment StoreEntitySet="osxservico">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdOs" ColumnName="IdOs" />
+          <ScalarProperty Name="IdServico" ColumnName="IdServico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="servicos">
+      <EntityTypeMapping TypeName="desafioapiModel.servicos">
+        <MappingFragment StoreEntitySet="servicos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NomeServico" ColumnName="NomeServico" />
+          <ScalarProperty Name="ValorFinal" ColumnName="ValorFinal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
